@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1196.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.EditPostController">
+   <children>
+      <Label layoutX="508.0" layoutY="21.0" text="HK" textFill="#2196f3">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <Label layoutX="567.0" layoutY="21.0" text=" Studios" textFill="#a0a2ab">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <HBox layoutY="66.0" prefHeight="132.0" prefWidth="1196.0" style="-fx-background-color: #161C28;">
+         <children>
+            <HBox maxWidth="-Infinity" prefHeight="145.0" prefWidth="660.0" style="-fx-background-color: #161C28;">
+               <children>
+                  <ImageView fx:id="imgPostSmall" fitHeight="145.0" fitWidth="325.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/Warning_Icon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="6.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox alignment="CENTER" maxWidth="-Infinity" prefHeight="145.0" prefWidth="800.0">
+                     <children>
+                        <JFXToggleButton fx:id="btnShowLarge" onAction="#actionBtnShowLarge" text="Show larger" textFill="#e1e1e1">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </JFXToggleButton>
+                        <JFXButton fx:id="btnAttach" buttonType="RAISED" onAction="#attachAction" prefHeight="32.0" prefWidth="125.0" style="-fx-background-color: #FFFFFF;" text="Attach a photo" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="18.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <VBox prefHeight="162.0" prefWidth="1201.0" style="-fx-background-color: #161C28;">
+               <children>
+                  <HBox prefHeight="51.0" prefWidth="1196.0" style="-fx-background-color: #161C28;">
+                     <children>
+                        <TextField fx:id="titleText" alignment="CENTER" prefHeight="69.0" prefWidth="871.0" promptText="Post title" style="-fx-background-color: #262f45;-fx-text-inner-color: #a0a2ab;">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="BOTTOM_LEFT" prefHeight="69.0" prefWidth="917.0" style="-fx-background-color: #161C28;">
+                     <children>
+                        <TextField fx:id="tagsText" alignment="CENTER" prefHeight="67.0" prefWidth="515.0" promptText="Tag(s):" style="-fx-background-color: #455883;" translateX="160.0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </TextField>
+                        <JFXButton fx:id="submitButton" onAction="#handleSubmitButtonClick" prefHeight="42.0" prefWidth="146.0" style="-fx-background-color: #2D3447;" text="Update" textFill="WHITE" translateX="200.0" translateY="4.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <JFXButton fx:id="backButton" layoutX="19.0" layoutY="8.0" onMouseClicked="#handleBackButtonClick" prefHeight="51.0" prefWidth="44.0">
+         <graphic>
+            <ImageView fx:id="imgBackButton">
+               <image>
+                  <Image url="@../icons/BackIcon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <Label fx:id="missingEntryText" alignment="CENTER_RIGHT" layoutX="760.0" layoutY="15.0" prefHeight="42.0" prefWidth="380.0" text="Missing entry!" textFill="RED" translateX="45.0" translateY="85.0" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <JFXToggleButton fx:id="orientationTxtArea" contentDisplay="RIGHT" layoutX="929.0" layoutY="7.0" onAction="#actionToggleButton" text="Post text from right to left :" textFill="#f2d500">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXToggleButton>
+      <StackPane fx:id="stackPane" layoutX="-11.0" layoutY="211.0" prefHeight="457.0" prefWidth="1207.0" style="-fx-border-color: #f1ae0a;">
+         <children>
+            <ScrollPane fx:id="postScroll_pane" hbarPolicy="NEVER" prefHeight="473.0" prefWidth="1196.0" style="-fx-background-color: transparent;;" stylesheets="@../css/HomeScreenStyle.css">
+               <content>
+                  <VBox fx:id="postListPane" prefHeight="482.0" prefWidth="1194.0" spacing="5.0" style="-fx-background-color: #2D3447; -fx-border-color: #f1ae0a;">
+                     <padding>
+                        <Insets left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <children>
+                        <TextArea fx:id="postText" nodeOrientation="LEFT_TO_RIGHT" prefHeight="449.0" prefWidth="1182.0" promptText="writing..." style="-fx-background-color: transparent;" wrapText="true">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </TextArea>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <ImageView fx:id="imgPostLarge" fitHeight="446.0" fitWidth="583.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/Warning_Icon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

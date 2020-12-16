@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1177.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.ProfileScreenController">
+   <children>
+      <Label layoutX="504.0" layoutY="14.0" text="HK" textFill="#2196f3">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <Label layoutX="562.0" layoutY="14.0" text=" Studios" textFill="#a0a2ab">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <HBox layoutY="65.0" prefHeight="203.0" prefWidth="1177.0" style="-fx-background-color: #161C28;">
+         <children>
+            <HBox prefHeight="203.0" prefWidth="372.0">
+               <children>
+                  <ImageView fx:id="profilePic" fitHeight="206.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/Warning_Icon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="2.0" left="3.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox alignment="CENTER" maxWidth="-Infinity" prefHeight="145.0" prefWidth="800.0">
+                     <children>
+                        <JFXToggleButton fx:id="btnShowLarge" onAction="#actionBtnShowLarge" text="Show larger" textFill="#e1e1e1">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="50.0" />
+                           </VBox.margin>
+                        </JFXToggleButton>
+                        <JFXButton fx:id="btnAttach" buttonType="RAISED" onAction="#attachAction" prefHeight="32.0" prefWidth="125.0" style="-fx-background-color: #FFFFFF;" text="Attach a photo">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin></JFXButton>
+                        <Label fx:id="erorrText" alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="125.0" text="Erorr!" textFill="RED" visible="false">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <VBox prefHeight="213.0" prefWidth="234.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="57.0" text="Name:" textFill="#1c7cc6">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="fullNameText" alignment="BOTTOM_LEFT" prefHeight="45.0" prefWidth="234.0" text="Full Name" textFill="WHITE">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefHeight="21.0" prefWidth="83.0" text="Username:" textFill="#1c7cc6">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="60.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="usernameText" prefHeight="45.0" prefWidth="228.0" text="UserName" textFill="WHITE">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <Label text="Phone Number:" textFill="#1c7cc6" translateX="200.0" translateY="40.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="phoneNumberText" alignment="TOP_CENTER" prefHeight="27.0" prefWidth="144.0" text="09130000000" textFill="#c9c9c9" translateX="85.0" translateY="60.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label prefHeight="21.0" prefWidth="103.0" text="Date Joined:" textFill="#1c7cc6" translateX="200.0" translateY="40.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="dateJoinedText" prefHeight="27.0" prefWidth="114.0" text="2020-11-18" textFill="#c9c9c9" translateX="100.0" translateY="60.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutY="278.0" prefHeight="86.0" prefWidth="1177.0" style="-fx-background-color: #0D0E1A;">
+         <children>
+            <Label alignment="TOP_CENTER" opacity="0.72" prefHeight="27.0" prefWidth="113.0" text="Status:" textFill="#c9c9c9" translateY="10.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="statusText" alignment="TOP_LEFT" prefHeight="68.0" prefWidth="1033.0" text="There is not status" textFill="#c9c9c9" textOverrun="CLIP" translateY="10.0" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Label layoutX="515.0" layoutY="364.0" text="Recent posts:" textFill="#a0a2ab">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <StackPane fx:id="stackPane" layoutY="276.0" prefHeight="395.0" prefWidth="1177.0">
+         <children>
+            <ScrollPane fx:id="postsPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="320.0" prefWidth="1177.0" style="-fx-background-color: #2D3447;" stylesheets="@../css/HomeScreenStyle.css">
+               <content>
+                  <VBox fx:id="postListPane" prefHeight="266.0" prefWidth="1101.0" style="-fx-background-color: #2D3447;" />
+               </content>
+               <StackPane.margin>
+                  <Insets left="100.0" right="100.0" top="130.0" />
+               </StackPane.margin>
+            </ScrollPane>
+            <ImageView fx:id="imgProfileLarge" fitHeight="385.0" fitWidth="446.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../icons/Warning_Icon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <JFXButton fx:id="addEditButton" layoutX="1057.0" layoutY="22.0" onAction="#handleAddEditAction" prefHeight="36.0" prefWidth="106.0" style="-fx-background-color: #3C58FA;" text="Edit profile" textFill="#a0a2ab" translateY="200.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="backButton" layoutX="14.0" onMouseClicked="#handleBackButtonClick" prefHeight="51.0" prefWidth="44.0">
+         <graphic>
+            <ImageView fx:id="imgBackButton">
+               <image>
+                  <Image url="@../icons/BackIcon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

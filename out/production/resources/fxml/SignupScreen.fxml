@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1177.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.SignUpController">
+   <children>
+      <Label layoutX="513.0" layoutY="14.0" text="HK" textFill="#2196f3">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <Label layoutX="573.0" layoutY="14.0" text=" Studios" textFill="#a0a2ab">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <Label fx:id="passwordsDoNotMatch" layoutX="738.0" layoutY="377.0" text="Passwords do not match!" textFill="#f53e3e" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="missingEntry" layoutX="521.0" layoutY="423.0" text="You are missing an entry!" textFill="#f53e3e" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="registerButton" layoutX="500.0" layoutY="453.0" onAction="#registerAction" prefHeight="51.0" prefWidth="198.0" style="-fx-background-color: #3C58FA;" text="Register" textFill="#a0a2ab">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="full_name" focusColor="#a0a2ab" layoutX="192.0" layoutY="147.0" prefHeight="44.0" prefWidth="385.0" promptText="Full Name" unFocusColor="#a0a2ab">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="phone_number" focusColor="#a0a2ab" layoutX="623.0" layoutY="147.0" prefHeight="44.0" prefWidth="385.0" promptText="Phone Number" unFocusColor="#a0a2ab">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="email" focusColor="#a0a2ab" layoutX="192.0" layoutY="232.0" onKeyReleased="#emailKeyTypedAction" prefHeight="44.0" prefWidth="385.0" promptText="Email" unFocusColor="#a0a2ab">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <Rectangle fx:id="emailDetection" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="5.0" layoutX="193.0" layoutY="275.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="385.0" />
+      <Label fx:id="emailNotValid" layoutX="333.0" layoutY="295.0" text="Email is not valid!" textFill="#f53e3e" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXPasswordField fx:id="password" layoutX="192.0" layoutY="322.0" prefHeight="44.0" prefWidth="385.0" promptText="Password" unFocusColor="#a0a2ab">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXPasswordField fx:id="verified_password" layoutX="623.0" layoutY="322.0" onKeyReleased="#passwordKeyTypedAction" prefHeight="44.0" prefWidth="385.0" promptText="Verify Password" unFocusColor="#a0a2ab">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXTextField fx:id="username" focusColor="#a0a2ab" layoutX="623.0" layoutY="232.0" prefHeight="44.0" prefWidth="385.0" promptText="Username" unFocusColor="#a0a2ab">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXTextField>
+      <Rectangle fx:id="passwordDetection" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="5.0" layoutX="623.0" layoutY="364.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="385.0" />
+      <JFXButton onMouseClicked="#backButtonClickAction" prefHeight="44.0" prefWidth="31.0" style="-fx-background-color: #066da4;" text=" " textFill="#221e1e">
+         <graphic>
+            <ImageView fitHeight="36.0" fitWidth="36.0">
+               <image>
+                  <Image url="@../images/Arrow_left.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXComboBox fx:id="cbo" editable="true" focusColor="#0af85e" labelFloat="true" layoutX="193.0" layoutY="401.0" prefHeight="44.0" prefWidth="179.0" promptText="Gender">
+         <padding>
+            <Insets left="12.0" />
+         </padding></JFXComboBox>
+   </children>
+</AnchorPane>

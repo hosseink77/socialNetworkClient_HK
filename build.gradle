@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+group 'hk.studios'
+version '1.0-HK_Studios'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.11.1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.11.1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.1'
+    compile group: 'com.jfoenix', name: 'jfoenix', version: '8.0.7'
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+    compile group: 'org.springframework', name: 'spring-beans', version: '5.2.8.RELEASE'
+    compile group: 'org.springframework', name: 'spring-core', version: '5.2.8.RELEASE'
+    compile group: 'org.springframework', name: 'spring-jcl', version: '5.2.8.RELEASE'
+    compile group: 'org.springframework', name: 'spring-web', version: '5.2.8.RELEASE'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'client.ClientMain'
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+

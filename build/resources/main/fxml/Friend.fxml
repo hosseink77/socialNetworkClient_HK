@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="friend" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onFriendClicked" prefHeight="90.0" prefWidth="567.0" spacing="30.0" style="-fx-background-color: #02030A; -fx-background-radius: 5; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.FriendController">
+   <effect>
+      <DropShadow blurType="GAUSSIAN" height="5.0" radius="2.0" width="5.0" />
+   </effect>
+   <children>
+      <ImageView fx:id="profilePic" fitHeight="88.0" fitWidth="101.0" pickOnBounds="true">
+         <image>
+            <Image url="@../icons/Warning_Icon.png" />
+         </image>
+         <HBox.margin>
+            <Insets left="3.0" />
+         </HBox.margin>
+      </ImageView>
+      <VBox alignment="CENTER" prefHeight="90.0" prefWidth="226.0">
+         <children>
+            <Label fx:id="id_text" alignment="TOP_CENTER" prefHeight="42.0" prefWidth="308.0" text="User Name" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="29.0" prefWidth="226.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="35.0" prefWidth="109.0" text="registery date :" textFill="WHITE">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="postNumber_text" prefHeight="29.0" prefWidth="97.0" text="2020.7.21" textFill="WHITE">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="47.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+      <JFXButton onAction="#delete" prefHeight="37.0" prefWidth="100.0" style="-fx-background-color: #e33e3e;" text="Remove">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+   </children>
+</HBox>
