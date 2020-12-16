@@ -155,7 +155,7 @@ public class HomeScreenController implements Initializable {
     }
 
     public void loadPostsinHome(){
-        List<PostEntity> postList = CreateRestTemplate.buildGetListPost("post/getAll/" );
+        List<PostEntity> postList = CreateRestTemplate.buildGetListPost("post/getAll/"+user.getUserName() );
         setupPosts(postList);
     }
 
