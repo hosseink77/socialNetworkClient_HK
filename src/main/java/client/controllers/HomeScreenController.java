@@ -146,7 +146,6 @@ public class HomeScreenController implements Initializable {
             System.out.println("Settings button pressed!!!");
         }
 //
-//        //FIXME Either remove this, OR be sure you clear ALL client data related to the last account logged in
         if (actionEvent.getSource() == signOutButton) {
             LoginController.setUserEntity(null);
             ConvertImage.deleteObject();
