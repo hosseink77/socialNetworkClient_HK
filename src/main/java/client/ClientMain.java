@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,24 +37,17 @@ public class ClientMain extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
-        try {
+    public void start(Stage primaryStage) throws IOException {
             parentWindow = primaryStage;
             Parent root=null;
-            if (new File("/temp/user.ser").exists()) {
-
-                try {
-                    LoginController.setUserEntity(ConvertImage.getObject());
+            try {
+                     LoginController.setUserEntity(ConvertImage.getObject());
                     root = FXMLLoader.load(getClass().getResource("/fxml/HomeScreen.fxml"));
-                }catch (Exception ex){
-                    LoginController.setUserEntity(null);
-                    ConvertImage.deleteObject();
-                    root = FXMLLoader.load(getClass().getResource("/fxml/LoginScreen.fxml"));
-                }
 
-            } else {
-                 root = FXMLLoader.load(getClass().getResource("/fxml/LoginScreen.fxml"));
+            }catch (NullPointerException | IOException ex){
+                root = FXMLLoader.load(getClass().getResource("/fxml/LoginScreen.fxml"));
             }
+
 //            Parent root = FXMLLoader.load(getClass().getResource("view/sample.fxml"));
 
             scene = new Scene(root, 1187, 664);
@@ -64,19 +58,25 @@ public class ClientMain extends Application {
             primaryStage.setResizable(false);
 
             setStageIcon(primaryStage);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public static void main(String[] args) {
-        //newNetworkManager();
         launch(args);
     }
 
     public static Stage getParentWindow() {
         return parentWindow;
+    }
+
+    public static File getUserObjTempRead(){
+        try {
+            return new File(ClientMain.class.getResource("/temp/user.ser").toURI());
+        } catch (URISyntaxException | NullPointerException e) {
+            return null;
+        }
+    }
+    public static File getUserObjTempWrite(){
+        return new File("./src/main/resources/temp/user.ser");
     }
 
     public static Object loadUI(String ui, AnchorPane anchorPane) {

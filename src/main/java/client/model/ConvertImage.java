@@ -1,12 +1,12 @@
 package client.model;
 
+import client.ClientMain;
 import client.model.entity.PostEntity;
 import client.model.entity.UserEntity;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
@@ -80,10 +80,24 @@ public class ConvertImage {
     public static void saveObject(UserEntity obj) throws IOException {
         ObjectOutputStream oos = null;
         FileOutputStream fout = null;
+
+        File fileUserObj = ClientMain.getUserObjTempWrite();
+
+        if (fileUserObj == null) {
+            System.out.println("null");
+            return;
+        }
+
+        if (!(fileUserObj.exists())){
+            System.out.println("not exists");
+            return ;
+        }
+
         try {
-            fout = new FileOutputStream("/temp/user.ser");
+            fout = new FileOutputStream(fileUserObj);
             oos = new ObjectOutputStream(fout);
             oos.writeObject(obj);
+            System.out.println("writeObject");
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -94,28 +108,38 @@ public class ConvertImage {
     }
 
     public static UserEntity getObject() throws IOException {
-        if (!(new File("/temp/user.ser").exists())) return null;
+
+        File fileUserObj = ClientMain.getUserObjTempRead();
+        if (fileUserObj == null)
+            return null;
+
+        if (!(fileUserObj.exists())) return null;
 
         ObjectInputStream objectinputstream = null;
         try {
-            FileInputStream streamIn = new FileInputStream("/temp/user.ser");
+            FileInputStream streamIn = new FileInputStream(fileUserObj);
             objectinputstream = new ObjectInputStream(streamIn);
             UserEntity user = (UserEntity) objectinputstream.readObject();
             objectinputstream.close();
             return user;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException | ClassNotFoundException e) {
+            return null;
         } finally {
             if (objectinputstream != null) {
                 objectinputstream.close();
             }
         }
-        return null;
     }
 
-    public static boolean deleteObject(){
-        File file = new File("/temp/user.ser");
-        return file.delete();
+    public static void deleteObject(){
+        File file = null;
+        try {
+            file = ClientMain.getUserObjTempWrite();
+             PrintWriter pw = new PrintWriter(file);
+             pw.print("");
+        } catch (NullPointerException | FileNotFoundException nEx){
+            System.out.println("ObjectFile Not Found");
+        }
     }
 
 }
