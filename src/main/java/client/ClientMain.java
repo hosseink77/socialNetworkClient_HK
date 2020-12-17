@@ -41,10 +41,10 @@ public class ClientMain extends Application {
             parentWindow = primaryStage;
             Parent root=null;
             try {
-                     LoginController.setUserEntity(ConvertImage.getObject());
-                    root = FXMLLoader.load(getClass().getResource("/fxml/HomeScreen.fxml"));
+                LoginController.setUserEntity(ConvertImage.getObject());
+                root = FXMLLoader.load(getClass().getResource("/fxml/HomeScreen.fxml"));
 
-            }catch (NullPointerException | IOException ex){
+            }catch (NullPointerException | IOException | IllegalArgumentException ex){
                 root = FXMLLoader.load(getClass().getResource("/fxml/LoginScreen.fxml"));
             }
 
