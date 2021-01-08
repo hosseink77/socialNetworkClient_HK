@@ -97,6 +97,7 @@ public class ConvertImage {
             fout = new FileOutputStream(fileUserObj);
             oos = new ObjectOutputStream(fout);
             oos.writeObject(obj);
+            System.out.println(fileUserObj.getAbsolutePath());
             System.out.println("writeObject");
         } catch (Exception ex) {
             ex.printStackTrace();
