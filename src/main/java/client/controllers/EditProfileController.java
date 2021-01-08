@@ -128,8 +128,8 @@ public class EditProfileController implements Initializable {
         username.setText(user.getUserName());
         full_name.setText(user.getFullName());
         email.setText( user.getEmail() );
-        password.setText(user.getPassword());
-        verified_password.setText(user.getPassword());
+//        password.setText(user.getPassword());
+//        verified_password.setText(user.getPassword());
         if(user.getStatus() != null) {
             status.setText(user.getStatus());
         }
@@ -166,7 +166,7 @@ public class EditProfileController implements Initializable {
             String cboGender=cbo.getValue();
             String statusGiven = status.getText();
 
-            boolean isMissingEntry = cboGender==null | fullName.isEmpty() || phoneNumber.isEmpty() || usernameGiven.isEmpty() || emailGiven.isEmpty() || passwordGiven.isEmpty() || verified_password.getText().isEmpty();
+            boolean isMissingEntry = cboGender==null | fullName.isEmpty() || phoneNumber.isEmpty() || usernameGiven.isEmpty() || emailGiven.isEmpty() ;/*|| passwordGiven.isEmpty() || verified_password.getText().isEmpty();*/
 
             if (passwordGiven.equals(verified_password.getText())) {
                 passwordsDoNotMatch.setVisible(false);
@@ -205,10 +205,16 @@ public class EditProfileController implements Initializable {
 
                 else{
                     if(statusGiven.isEmpty()) statusGiven = null;
+                    String oldPass = null ;
+                    if(passwordGiven.isEmpty()){
+                        passwordGiven = null;
+                        oldPass = user.getPassword();
+                    }
                     user.set(usernameGiven,  fullName, emailGiven, phoneNumber, passwordGiven,isMan,statusGiven);
                     System.out.println(user);
                     if ( CreateRestTemplate.buildPost("edit",UserEntity.class,user) ){
                         setRegistered(true);
+                        if(passwordGiven == null ) user.setPassword(oldPass);
                         LoginController.setUserEntity(user);
                         try {
                             ConvertImage.saveObject(user);

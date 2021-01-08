@@ -106,9 +106,9 @@ public class LoginController implements Initializable {
             if (!usernameGiven.isEmpty() && !passwordGiven.isEmpty()) {
 
                 try {
-                    UserEntity user = CreateRestTemplate.buildGet("", UserEntity.class, usernameGiven);
+                    UserEntity user = CreateRestTemplate.buildLogIn(UserEntity.class, usernameGiven,passwordGiven);
 
-                    if (user != null && user.getPassword().equals(passwordGiven)) {
+                    if (user != null) {
 //                        loadUI("client/resources/fxml/HomeScreen.fxml");
                         userEntity = user;
 
@@ -123,10 +123,11 @@ public class LoginController implements Initializable {
                         if ( user == null ) {
                             noUserFound.setVisible(true);
                             noUserFound.setText("User Not Found!");
-                        } else {
-                            noUserFound.setVisible(true);
-                            noUserFound.setText("Password is wrong!");
                         }
+//                        else {
+//                            noUserFound.setVisible(true);
+//                            noUserFound.setText("Password is wrong!");
+//                        }
                     }
 
                 } catch (NullPointerException ex) {
