@@ -70,13 +70,13 @@ public class ClientMain extends Application {
 
     public static File getUserObjTempRead(){
         try {
-            return new File(ClientMain.class.getResource("/temp/user.ser").toURI());
-        } catch (URISyntaxException | NullPointerException e) {
+            return new File(System.getProperty("user.home")+"/user.ser");
+        } catch (NullPointerException e) {
             return null;
         }
     }
     public static File getUserObjTempWrite(){
-        return new File("./src/main/resources/temp/user.ser");
+        return new File(System.getProperty("user.home")+"/user.ser");
     }
 
     public static Object loadUI(String ui, AnchorPane anchorPane) {
