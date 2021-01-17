@@ -42,7 +42,7 @@ public class CreateRestTemplate {
 
     }
 
-    public static <T> T buildGet(String url, Class<T> classType, String userNme) throws RestClientException {
+    public static <T> T buildGet(String url, Class<T> classType, String userNme ) throws RestClientException {
         try {
             ResponseEntity<T> response = buildObject().getForEntity(baseUrl + url + "?id=" + userNme, classType);
             return response.getBody();
@@ -56,9 +56,9 @@ public class CreateRestTemplate {
 
     }
 
-    public static String buildGetToken( String userName , String pass) throws RestClientException {
+    public static String buildGetToken( String userName , String pass , boolean b) throws RestClientException {
         try {
-            ResponseEntity<String> response = buildObject().getForEntity(baseUrl +"token/"+userName+"/"+pass, String.class);
+            ResponseEntity<String> response = buildObject().getForEntity(baseUrl +"token/"+userName+"/"+pass+"/"+b, String.class);
             return response.getBody();
         } catch (HttpClientErrorException.NotFound ex) {
             System.out.println("404 not found");

@@ -113,7 +113,7 @@ public class LoginController implements Initializable {
 
                 try {
 
-                    String tok = CreateRestTemplate.buildGetToken(usernameGiven, passwordGiven);
+                    String tok = CreateRestTemplate.buildGetToken(usernameGiven, passwordGiven , remember.isSelected() );
                     System.out.println("token:" + tok);
                     if (tok != null) {
 //                        loadUI("client/resources/fxml/HomeScreen.fxml");
