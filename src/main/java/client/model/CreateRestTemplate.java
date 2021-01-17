@@ -56,6 +56,23 @@ public class CreateRestTemplate {
 
     }
 
+    public static boolean buildTokenValidation(String user , String token){
+        try {
+            if( user == null || token == null || user.isEmpty() || token.isEmpty() ){
+                return false;
+            }
+            ResponseEntity<Boolean> response = buildObject().getForEntity(baseUrl +"token/validation/"+user+"/"+token  , Boolean.class);
+            System.out.println("check TokenValidation :"+response);
+            return response.getBody();
+        }catch (HttpClientErrorException.NotFound ex) {
+            System.out.println("404 not found");
+            return false;
+        } catch (ResourceAccessException ex) {
+            System.out.println("ResourceAccessException : No Connection");
+            return false;
+        }
+    }
+
     public static String buildGetToken( String userName , String pass , boolean b) throws RestClientException {
         try {
             ResponseEntity<String> response = buildObject().getForEntity(baseUrl +"token/"+userName+"/"+pass+"/"+b, String.class);

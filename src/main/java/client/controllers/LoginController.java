@@ -118,8 +118,8 @@ public class LoginController implements Initializable {
                     if (tok != null) {
 //                        loadUI("client/resources/fxml/HomeScreen.fxml");
                         UserEntity user = CreateRestTemplate.buildLogIn(tok);
-                        System.out.println(user);
-                        ;
+                        System.out.println("user:"+user);
+
                         userEntity = user;
                         token = tok;
                         try {

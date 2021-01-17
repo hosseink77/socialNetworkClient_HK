@@ -2,6 +2,7 @@ package client;
 
 
 import client.controllers.LoginController;
+import client.model.CreateRestTemplate;
 import client.model.FileHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -152,6 +153,17 @@ public class ClientMain extends Application {
         Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
         stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
+    }
+
+    public static void signOut (AnchorPane anchorPane){
+        FileHelper.deleteObject();
+        FileHelper.deleteToken();
+        CreateRestTemplate.buildDeleteByPath("token/delete/"+
+                LoginController.getToken()+"/"+
+                LoginController.getUserEntity().getUserName());
+        LoginController.setUserEntity(null);
+        LoginController.setToken(null);
+        ClientMain.loadUI("LoginScreen", anchorPane);
     }
 
     public static String formatDate(Date date){

@@ -1,8 +1,8 @@
 package client.controllers;
 
 import client.ClientMain;
-import client.model.ConvertImage;
 import client.model.CreateRestTemplate;
+import client.model.FileHelper;
 import client.model.entity.UserEntity;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -217,7 +217,7 @@ public class EditProfileController implements Initializable {
                         if(passwordGiven == null ) user.setPassword(oldPass);
                         LoginController.setUserEntity(user);
                         try {
-                            ConvertImage.saveObject(user);
+                            FileHelper.saveObject(user);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }

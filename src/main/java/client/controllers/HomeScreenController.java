@@ -159,6 +159,9 @@ public class HomeScreenController implements Initializable {
 
     public void loadPostsinHome(){
         List<PostEntity> postList = CreateRestTemplate.buildGetListPost("post/getAll/"+user.getUserName()+"/"+LoginController.getToken() );
+        if( ! CreateRestTemplate.buildTokenValidation(user.getUserName(),LoginController.getToken()) ){
+            ClientMain.signOut(anchorPane);
+        }
         setupPosts(postList);
     }
 

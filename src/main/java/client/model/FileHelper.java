@@ -81,6 +81,7 @@ public class FileHelper {
         try {
             try( PrintWriter pw = new PrintWriter(ClientMain.getUserTokenTemp()) ) {
                 pw.print(token);
+                System.out.println("writeToken");
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
