@@ -147,14 +147,20 @@ public class HomeScreenController implements Initializable {
         }
 //
         if (actionEvent.getSource() == signOutButton) {
-            LoginController.setUserEntity(null);
+
             ConvertImage.deleteObject();
+            ConvertImage.deleteToken();
+            CreateRestTemplate.buildDeleteByPath("token/delete/"+
+                    LoginController.getToken()+"/"+
+                    LoginController.getUserEntity().getUserName());
+            LoginController.setUserEntity(null);
+            LoginController.setToken(null);
             ClientMain.loadUI("LoginScreen", anchorPane);
         }
     }
 
     public void loadPostsinHome(){
-        List<PostEntity> postList = CreateRestTemplate.buildGetListPost("post/getAll/"+user.getUserName() );
+        List<PostEntity> postList = CreateRestTemplate.buildGetListPost("post/getAll/"+user.getUserName()+"/"+LoginController.getToken() );
         setupPosts(postList);
     }
 

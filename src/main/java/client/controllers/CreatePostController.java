@@ -80,7 +80,6 @@ public class CreatePostController implements Initializable {
         return instance;
     }
 
-    //TODO Setup parsing system as well as formatting (User clicks bold for example, which add's '<b> </b>' and all text between that will be bold or something)
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         instance = this;
@@ -128,7 +127,7 @@ public class CreatePostController implements Initializable {
                     newPost = new PostEntity(clientUserObject.getUserName(), postTitle, postTags, postText, null, imgByte);
 
                     System.out.println(newPost);
-                    if (CreateRestTemplate.buildPost("post/", PostEntity.class, newPost)) {
+                    if (CreateRestTemplate.buildPost("post/"+LoginController.getToken(), PostEntity.class, newPost)) {
                         setPostCreated(true);
                     } else {
                         setPostCreated(false);

@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.Scanner;
 
 public class ConvertImage {
 
@@ -76,6 +77,47 @@ public class ConvertImage {
         return null;
     }
 
+    public static void saveToken (String token){
+        try {
+            try( PrintWriter pw = new PrintWriter(ClientMain.getUserTokenTemp()) ) {
+                pw.print(token);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static String getToken (){
+        File file = ClientMain.getUserTokenTemp();
+        if(file.exists()){
+            try {
+                try( Scanner sc = new Scanner(file) ){
+                    String token = sc.next();
+                    if(token != null && ! token.isEmpty()){
+                        return token;
+                    }
+                }
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public static void deleteToken(){
+        File file = null;
+        try {
+            file = ClientMain.getUserTokenTemp();
+            try( PrintWriter pw = new PrintWriter(file) ) {
+                pw.print("");
+            }
+        } catch (NullPointerException | FileNotFoundException nEx){
+            System.out.println("ObjectFile Not Found");
+        }
+    }
+
 
     public static void saveObject(UserEntity obj) throws IOException {
         ObjectOutputStream oos = null;
@@ -135,9 +177,10 @@ public class ConvertImage {
     public static void deleteObject(){
         File file = null;
         try {
-            file = ClientMain.getUserObjTempWrite();
-             PrintWriter pw = new PrintWriter(file);
-             pw.print("");
+             file = ClientMain.getUserObjTempWrite();
+             try( PrintWriter pw = new PrintWriter(file) ) {
+                 pw.print("");
+             }
         } catch (NullPointerException | FileNotFoundException nEx){
             System.out.println("ObjectFile Not Found");
         }

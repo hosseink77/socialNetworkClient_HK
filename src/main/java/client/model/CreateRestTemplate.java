@@ -56,9 +56,23 @@ public class CreateRestTemplate {
 
     }
 
-    public static <T> T buildLogIn( Class<T> classType, String userNme , String pass) throws RestClientException {
+    public static String buildGetToken( String userName , String pass) throws RestClientException {
         try {
-            ResponseEntity<T> response = buildObject().getForEntity(baseUrl +"logIn/"+userNme+"/"+pass, classType);
+            ResponseEntity<String> response = buildObject().getForEntity(baseUrl +"token/"+userName+"/"+pass, String.class);
+            return response.getBody();
+        } catch (HttpClientErrorException.NotFound ex) {
+            System.out.println("404 not found");
+            return null;
+        } catch (ResourceAccessException ex) {
+            System.out.println("ResourceAccessException : No Connection");
+            return null;
+        }
+
+    }
+
+    public static UserEntity buildLogIn( String token) throws RestClientException {
+        try {
+            ResponseEntity<UserEntity> response = buildObject().getForEntity(baseUrl +"logIn/"+token, UserEntity.class);
             return response.getBody();
         } catch (HttpClientErrorException.NotFound ex) {
             System.out.println("404 not found");
@@ -74,8 +88,12 @@ public class CreateRestTemplate {
         boolean result;
         try {
 
-            buildObject().postForEntity(baseUrl + url, body, classType);
-            result = true;
+            ResponseEntity<T> entity = buildObject().postForEntity(baseUrl + url, body, classType);
+            if(entity != null) {
+                result = true;
+            }else{
+                result = false;
+            }
 
         } catch (HttpClientErrorException.NotFound ex) {
             result = false;

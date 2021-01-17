@@ -8,7 +8,6 @@ import client.model.entity.UserEntity;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
-import javafx.animation.ParallelTransition;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -170,8 +169,8 @@ public class ProfileScreenController implements Initializable {
             try {
                 if (file != null) {
                     userObject.setImage(ConvertImage.imgAbsToBytes(file));
-                    if(CreateRestTemplate.buildPost("edit", UserEntity.class, userObject)) {
-                        setPostCreated(true);
+                    if(CreateRestTemplate.buildPost("edit/"+LoginController.getToken(), UserEntity.class, userObject)) {
+                        setProfileEdited(true);
                         LoginController.setUserEntity(userObject);
                         try {
                             ConvertImage.saveObject(userObject);
@@ -187,7 +186,7 @@ public class ProfileScreenController implements Initializable {
                         imgProfileLarge.fitWidthProperty().bind(stackPane.widthProperty());
                         profilePic.setVisible(true);
                     } else {
-                        setPostCreated(false);
+                        setProfileEdited(false);
                     }
 
                 }
@@ -201,7 +200,7 @@ public class ProfileScreenController implements Initializable {
         }
     }
 
-    public void setPostCreated(boolean success) {
+    public void setProfileEdited(boolean success) {
         if (success) {
             Platform.runLater(() -> {
                 erorrText.setTextFill(Paint.valueOf(Color.GREEN.toString()));

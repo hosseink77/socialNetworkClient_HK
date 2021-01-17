@@ -192,7 +192,7 @@ public class ReadPostScreen implements Initializable {
             if (clientUserObject.getUserName().equals(postOwnerId)) {
 
                 System.out.println("Delete post button was clicked!");
-                CreateRestTemplate.buildDeleteByPath("post/delete/" + postOwnerId + "/" + postTitle);
+                CreateRestTemplate.buildDeleteByPath("post/delete/" + postOwnerId + "/" + postTitle + "/" + LoginController.getToken());
 
                 errorText.setTextFill(Paint.valueOf(Color.GREEN.toString()));
                 errorText.setText("Post deleted successfully!");

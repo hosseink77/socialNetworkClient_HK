@@ -57,7 +57,7 @@ public class FriendScreenController  implements Initializable {
 
     public void loadFriendsHome() {
         friendListPane.getChildren().clear();
-        List<UserEntity> friendList = CreateRestTemplate.buildGetListFriend("friend/"+LoginController.getUserEntity().getUserName() );
+        List<UserEntity> friendList = CreateRestTemplate.buildGetListFriend("friend/"+LoginController.getUserEntity().getUserName()+"/"+LoginController.getToken() );
         setupFriends(friendList);
     }
 
@@ -116,7 +116,7 @@ public class FriendScreenController  implements Initializable {
                 if(! friendId.equals(userId) && CreateRestTemplate.isExistUserName(friendId)) {
                     FriendEntity obj = new FriendEntity(userId, friendId);
                     if( ! CreateRestTemplate.isExistPath("friend/isExist/"+userId+"/"+friendId) ) {
-                        if (CreateRestTemplate.buildPost("friend/", FriendEntity.class, obj)) {
+                        if (CreateRestTemplate.buildPost("friend/"+LoginController.getToken(), FriendEntity.class, obj)) {
                             errorNotFound.setText("User successfully added");
                             errorNotFound.setTextFill(Paint.valueOf(Color.GREEN.toString()));
                             errorNotFound.setVisible(true);

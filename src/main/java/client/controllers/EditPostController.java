@@ -143,7 +143,7 @@ public class EditPostController implements Initializable {
 
                     newPost = new PostEntity(postOld.getOwnerId(), postTitle, postTags, postText, postOld.getDate(), imgByte);
                     System.out.println(newPost);
-                    if (CreateRestTemplate.buildPost("post/edit/"+ postOld.getTitle(), PostEntity.class, newPost)) {
+                    if (CreateRestTemplate.buildPost("post/edit/"+ postOld.getTitle()+"/"+LoginController.getToken(), PostEntity.class, newPost)) {
                         setPostCreated(true);
                         this.newPost = newPost;
                     } else {

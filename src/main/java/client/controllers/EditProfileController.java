@@ -212,7 +212,7 @@ public class EditProfileController implements Initializable {
                     }
                     user.set(usernameGiven,  fullName, emailGiven, phoneNumber, passwordGiven,isMan,statusGiven);
                     System.out.println(user);
-                    if ( CreateRestTemplate.buildPost("edit",UserEntity.class,user) ){
+                    if ( CreateRestTemplate.buildPost("edit/"+LoginController.getToken(),UserEntity.class,user) ){
                         setRegistered(true);
                         if(passwordGiven == null ) user.setPassword(oldPass);
                         LoginController.setUserEntity(user);

@@ -42,9 +42,16 @@ public class ClientMain extends Application {
             Parent root=null;
             try {
                 LoginController.setUserEntity(ConvertImage.getObject());
-                root = FXMLLoader.load(getClass().getResource("/fxml/HomeScreen.fxml"));
-
-            }catch (NullPointerException | IOException | IllegalArgumentException ex){
+                LoginController.setToken(ConvertImage.getToken());
+                if(LoginController.getToken() == null || LoginController.getUserEntity() == null){
+                    root = FXMLLoader.load(getClass().getResource("/fxml/LoginScreen.fxml"));
+                }else {
+                    root = FXMLLoader.load(getClass().getResource("/fxml/HomeScreen.fxml"));
+                }
+                if(LoginController.getToken() == null || LoginController.getUserEntity() == null){
+                    root = FXMLLoader.load(getClass().getResource("/fxml/LoginScreen.fxml"));
+                }
+            }catch (Exception ex){
                 root = FXMLLoader.load(getClass().getResource("/fxml/LoginScreen.fxml"));
             }
 
@@ -77,6 +84,10 @@ public class ClientMain extends Application {
     }
     public static File getUserObjTempWrite(){
         return new File(System.getProperty("user.home")+"/user.ser");
+    }
+
+    public static File getUserTokenTemp(){
+        return new File(System.getProperty("user.home")+"/token.txt");
     }
 
     public static Object loadUI(String ui, AnchorPane anchorPane) {

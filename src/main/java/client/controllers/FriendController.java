@@ -54,7 +54,7 @@ public class FriendController implements Initializable {
 
     public void delete(ActionEvent actionEvent) {
         FriendEntity obj = new FriendEntity(LoginController.getUserEntity().getUserName(), friendObject.getUserName());
-        if ( CreateRestTemplate.buildPost("friend/delete",FriendEntity.class,obj) ){
+        if ( CreateRestTemplate.buildPost("friend/delete/"+LoginController.getToken(),FriendEntity.class,obj) ){
             friendScreenController.loadFriendsHome();
         }
     }

@@ -73,6 +73,16 @@ public class LoginController implements Initializable {
 
     private static UserEntity userEntity;
 
+    private static String token;
+
+    public static void setToken(String token) {
+        LoginController.token = token;
+    }
+
+    public static String getToken() {
+        return token;
+    }
+
     public static UserEntity getUserEntity() {
         return userEntity;
     }
@@ -106,21 +116,27 @@ public class LoginController implements Initializable {
             if (!usernameGiven.isEmpty() && !passwordGiven.isEmpty()) {
 
                 try {
-                    UserEntity user = CreateRestTemplate.buildLogIn(UserEntity.class, usernameGiven,passwordGiven);
 
-                    if (user != null) {
+                    String tok = CreateRestTemplate.buildGetToken(usernameGiven, passwordGiven);
+                    System.out.println("token:" + tok);
+                    if (tok != null) {
 //                        loadUI("client/resources/fxml/HomeScreen.fxml");
+                        UserEntity user = CreateRestTemplate.buildLogIn(tok);
+                        System.out.println(user);
+                        ;
                         userEntity = user;
-
+                        token = tok;
                         try {
-                            if(remember.isSelected())
+                            if (remember.isSelected()) {
                                 ConvertImage.saveObject(user);
+                                ConvertImage.saveToken(token);
+                            }
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
                         ClientMain.loadUI("HomeScreen", anchorPane);
                     } else {
-                        if ( user == null ) {
+                        if (tok == null) {
                             noUserFound.setVisible(true);
                             noUserFound.setText("User Not Found!");
                         }
