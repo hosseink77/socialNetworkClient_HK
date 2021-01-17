@@ -1,7 +1,7 @@
 package client.controllers;
 
 import client.ClientMain;
-import client.model.ConvertImage;
+import client.model.FileHelper;
 import client.model.CreateRestTemplate;
 import client.model.entity.PostEntity;
 import client.model.entity.UserEntity;
@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,7 +26,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -98,7 +96,7 @@ public class HomeScreenController implements Initializable {
         }catch (NullPointerException ex){
 //            ex.printStackTrace();
             LoginController.setUserEntity(null);
-            ConvertImage.deleteObject();
+            FileHelper.deleteObject();
             ClientMain.loadUI("LoginScreen", anchorPane);
             return;
         }
@@ -113,7 +111,7 @@ public class HomeScreenController implements Initializable {
     }
 
     public void setClientUser() {
-        setProfilePic( ConvertImage.getProfile(user) );
+        setProfilePic( FileHelper.getProfile(user) );
     }
 
     public void handleMenuButtonClick(ActionEvent actionEvent) {
@@ -148,8 +146,8 @@ public class HomeScreenController implements Initializable {
 //
         if (actionEvent.getSource() == signOutButton) {
 
-            ConvertImage.deleteObject();
-            ConvertImage.deleteToken();
+            FileHelper.deleteObject();
+            FileHelper.deleteToken();
             CreateRestTemplate.buildDeleteByPath("token/delete/"+
                     LoginController.getToken()+"/"+
                     LoginController.getUserEntity().getUserName());

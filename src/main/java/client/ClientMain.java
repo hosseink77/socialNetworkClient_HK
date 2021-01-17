@@ -2,7 +2,7 @@ package client;
 
 
 import client.controllers.LoginController;
-import client.model.ConvertImage;
+import client.model.FileHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,8 +40,8 @@ public class ClientMain extends Application {
             parentWindow = primaryStage;
             Parent root=null;
             try {
-                LoginController.setUserEntity(ConvertImage.getObject());
-                LoginController.setToken(ConvertImage.getToken());
+                LoginController.setUserEntity(FileHelper.getObject());
+                LoginController.setToken(FileHelper.getToken());
                 if(LoginController.getToken() == null || LoginController.getUserEntity() == null){
                     root = FXMLLoader.load(getClass().getResource("/fxml/LoginScreen.fxml"));
                 }else {

@@ -2,7 +2,7 @@ package client.controllers;
 
 import client.ClientMain;
 
-import client.model.ConvertImage;
+import client.model.FileHelper;
 import client.model.CreateRestTemplate;
 import client.model.entity.PostEntity;
 import client.model.entity.UserEntity;
@@ -90,7 +90,7 @@ public class EditPostController implements Initializable {
         titleText.setText(postOld.getTitle());
         postText.setText(postOld.getPostText());
         tagsText.setText(postOld.getTags());
-        Image postPic = ConvertImage.getPostPic(postOld);
+        Image postPic = FileHelper.getPostPic(postOld);
         if(postPic != null){
             imgPostLarge.setImage( postPic );
             imgPostSmall.setImage( postPic );
@@ -190,7 +190,7 @@ public class EditPostController implements Initializable {
                 imgPostSmall.setVisible(true);
 
                 imgFile=file;
-                imgByte = ConvertImage.imgAbsToBytes(imgFile);
+                imgByte = FileHelper.imgAbsToBytes(imgFile);
 
             }
         } catch (IOException ex) {

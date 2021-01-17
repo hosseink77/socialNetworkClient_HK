@@ -1,7 +1,7 @@
 package client.controllers;
 
 import client.ClientMain;
-import client.model.ConvertImage;
+import client.model.FileHelper;
 import client.model.CreateRestTemplate;
 import client.model.entity.PostEntity;
 import client.model.entity.UserEntity;
@@ -123,8 +123,8 @@ public class ProfileScreenController implements Initializable {
             addEditButton.setVisible(false);
         }
 //        if (userToView.getImage() != null) {
-            this.profilePic.setImage( ConvertImage.getProfile(userToView) );
-            this.imgProfileLarge.setImage( ConvertImage.getProfile(userToView) );
+            this.profilePic.setImage( FileHelper.getProfile(userToView) );
+            this.imgProfileLarge.setImage( FileHelper.getProfile(userToView) );
 //        }
 
         this.fullNameText.setText(userToView.getFullName());
@@ -168,12 +168,12 @@ public class ProfileScreenController implements Initializable {
             imgFile = file;
             try {
                 if (file != null) {
-                    userObject.setImage(ConvertImage.imgAbsToBytes(file));
+                    userObject.setImage(FileHelper.imgAbsToBytes(file));
                     if(CreateRestTemplate.buildPost("edit/"+LoginController.getToken(), UserEntity.class, userObject)) {
                         setProfileEdited(true);
                         LoginController.setUserEntity(userObject);
                         try {
-                            ConvertImage.saveObject(userObject);
+                            FileHelper.saveObject(userObject);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }

@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Scanner;
 
-public class ConvertImage {
+public class FileHelper {
 
     public static byte[] imgToBytes(String imageName) throws IOException {
         BufferedImage bImage = ImageIO.read(new File("/temp/" + imageName + ".jpg"));

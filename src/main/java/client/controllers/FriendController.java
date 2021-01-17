@@ -1,7 +1,7 @@
 package client.controllers;
 
 import client.ClientMain;
-import client.model.ConvertImage;
+import client.model.FileHelper;
 import client.model.CreateRestTemplate;
 import client.model.entity.FriendEntity;
 import client.model.entity.UserEntity;
@@ -9,10 +9,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,7 +40,7 @@ public class FriendController implements Initializable {
         this.friendObject = user;
         this.id_text.setText(user.getUserName());
         this.postNumber_text.setText(ClientMain.formatDate(user.getDateJoin()));
-        this.profilePic.setImage(ConvertImage.getProfile(user));
+        this.profilePic.setImage(FileHelper.getProfile(user));
     }
 
 

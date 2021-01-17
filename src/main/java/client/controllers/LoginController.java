@@ -1,7 +1,7 @@
 package client.controllers;
 
 import client.ClientMain;
-import client.model.ConvertImage;
+import client.model.FileHelper;
 import client.model.CreateRestTemplate;
 import client.model.entity.UserEntity;
 import com.jfoenix.controls.JFXButton;
@@ -10,12 +10,9 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.animation.TranslateTransition;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -24,7 +21,6 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -128,8 +124,8 @@ public class LoginController implements Initializable {
                         token = tok;
                         try {
                             if (remember.isSelected()) {
-                                ConvertImage.saveObject(user);
-                                ConvertImage.saveToken(token);
+                                FileHelper.saveObject(user);
+                                FileHelper.saveToken(token);
                             }
                         } catch (IOException ex) {
                             ex.printStackTrace();
