@@ -169,8 +169,11 @@ public class ProfileScreenController implements Initializable {
             try {
                 if (file != null) {
                     userObject.setImage(FileHelper.imgAbsToBytes(file));
+                    String password = userObject.getPassword();
+                    userObject.setPassword(null);
                     if(CreateRestTemplate.buildPost("edit/"+LoginController.getToken(), UserEntity.class, userObject)) {
                         setProfileEdited(true);
+                        userObject.setPassword(password);
                         LoginController.setUserEntity(userObject);
                         try {
                             FileHelper.saveObject(userObject);

@@ -205,16 +205,17 @@ public class EditProfileController implements Initializable {
 
                 else{
                     if(statusGiven.isEmpty()) statusGiven = null;
-                    String oldPass = null ;
+                    String newPass = null ;
                     if(passwordGiven.isEmpty()){
-                        passwordGiven = null;
-                        oldPass = user.getPassword();
+                        newPass = null;
+                    }else{
+                        newPass = passwordGiven;
                     }
-                    user.set(usernameGiven,  fullName, emailGiven, phoneNumber, passwordGiven,isMan,statusGiven);
+                    user.set(usernameGiven,  fullName, emailGiven, phoneNumber, newPass,isMan,statusGiven);
                     System.out.println(user);
                     if ( CreateRestTemplate.buildPost("edit/"+LoginController.getToken(),UserEntity.class,user) ){
                         setRegistered(true);
-                        if(passwordGiven == null ) user.setPassword(oldPass);
+//                        if(passwordGiven == null ) user.setPassword(null);
                         LoginController.setUserEntity(user);
                         try {
                             FileHelper.saveObject(user);
